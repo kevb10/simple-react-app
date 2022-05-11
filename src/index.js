@@ -1,13 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import { render } from "react-dom";
-import TextInput from "./TextInput";
+import { QueryClient, QueryClientProvider } from "react-query";
+import TextInput from "./components/TextInput";
 
-const App = () => (
-  <div style={{ width: "100%" }}>
-    <div>
-      What year is it? <TextInput placeholder="2050" />
-    </div>
-  </div>
-);
+const App = () => {
+	const [token, setToken] = useState("");
+	const queryClient = new QueryClient({
+		defaultOptions : {
+			queries : {
+				retry: false,
+			},
+		},
+	});
+
+	return (
+	<div style={{ width: "100%" }}>
+		<QueryClientProvider client={queryClient}>
+			Firebase Token: <input value={token} onChange={e => setToken(e.target.value)}/>
+			<div>
+				Look up by SKU: <TextInput sku="" token={token} />
+			</div>
+		</QueryClientProvider>
+	</div>
+)
+};
 
 render(<App />, document.getElementById("root"));
