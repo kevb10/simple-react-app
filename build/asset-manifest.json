@@ -1,0 +1,9 @@
+{
+  "files": {
+    "main.js": "/static/js/react.js",
+    "index.html": "/index.html"
+  },
+  "entrypoints": [
+    "static/js/react.js"
+  ]
+}
