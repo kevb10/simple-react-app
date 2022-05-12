@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import TextInput from "./TextInput";
 import useGetProductsBySku from "../helpers/getSku";
+import Button from "./Button";
 
 export default function App() {
 	const dontUrl = "https://i.imgflip.com/1b40yd.jpg";
@@ -28,12 +29,14 @@ export default function App() {
 
 	return (
 		<div>
-			Firebase Token: <input value={token} onChange={e => setToken(e.target.value)} />
+			<Button text="Go Back" onClick={handleGoBackButtonClick} />
+			<div>
+				Firebase Token: <input value={token} onChange={e => setToken(e.target.value)} />
+			</div>
 			<div>
 				Look up by SKU: <TextInput sku={sku} onChangeSku={setSku} />
 			</div>
-			<button onClick={() => window.open(dontUrl, "_blank")}>Don't click me</button>
-			<button onClick={handleGoBackButtonClick}>back</button>
+			<Button text="Don't click me" onClick={() => window.open(dontUrl, "_blank")} />
 			<div>
 				{isLoading && <p>Loading...</p>}
 				{isError && <p>Error...</p>}

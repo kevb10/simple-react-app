@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import {useHistory} from "react-router-dom";
+import Button from "./Button";
 
 /**
  * Represents a running server validation request.
@@ -19,8 +20,8 @@ export default function TextInput({sku, onChangeSku}) {
 
 	return (
 	  <>
-		<input value={productSku} onChange={e => setProductSku(e.target.value)} />
-		<button onClick={() => handleButtonClick()}>Search</button>
+		<input type="search" value={productSku} onChange={e => setProductSku(e.target.value)} />
+		<Button text="Search" onClick={() => handleButtonClick()} />
 	  </>
 	);
   }
