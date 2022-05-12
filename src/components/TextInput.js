@@ -20,7 +20,7 @@ export default function TextInput({sku, onChangeSku}) {
 
 	return (
 	  <>
-		<input type="search" value={productSku} onChange={e => setProductSku(e.target.value)} />
+		<input value={productSku} onChange={e => setProductSku(e.target.value)} />
 		<Button text="Search" onClick={() => handleButtonClick()} />
 	  </>
 	);
