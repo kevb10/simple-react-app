@@ -24,7 +24,6 @@ export default function App() {
 
 	const handleGoBackButtonClick = () => {
 		history.goBack();
-		// window.location.reload();
 	}
 
 	return (
