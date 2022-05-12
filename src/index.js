@@ -1,28 +1,21 @@
-import React, { useState } from "react";
 import { render } from "react-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
-import TextInput from "./components/TextInput";
+import { BrowserRouter, Route } from "react-router-dom";
+import App from "./components/App";
 
-const App = () => {
-	const [token, setToken] = useState("");
-	const queryClient = new QueryClient({
-		defaultOptions : {
-			queries : {
-				retry: false,
-			},
+const queryClient = new QueryClient({
+	defaultOptions: {
+		queries: {
+			retry: false,
 		},
-	});
-
-	return (
-	<div style={{ width: "100%" }}>
-		<QueryClientProvider client={queryClient}>
-			Firebase Token: <input value={token} onChange={e => setToken(e.target.value)}/>
-			<div>
-				Look up by SKU: <TextInput sku="" token={token} />
-			</div>
-		</QueryClientProvider>
-	</div>
-)
-};
-
-render(<App />, document.getElementById("root"));
+	},
+});
+render(
+	<BrowserRouter>
+		<Route path={["/sku/:sku", "/"]}>
+			<QueryClientProvider client={queryClient}>
+				<App />
+			</QueryClientProvider>
+		</Route>
+	</BrowserRouter>
+	, document.getElementById("root"));

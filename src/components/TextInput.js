@@ -1,39 +1,26 @@
 import { useEffect, useState } from "react";
-import useGetProductsBySku from "../helpers/getSku";
+import {useHistory} from "react-router-dom";
 
 /**
  * Represents a running server validation request.
  */
-export default function TextInput({sku, token}) {
+export default function TextInput({sku, onChangeSku}) {
 	const [productSku, setProductSku] = useState(sku);
-	const [doSearch, setDoSearch] = useState(false);
+	const history = useHistory();
 
-	const {
-		data,
-		isLoading,
-		isError,
-	} =	useGetProductsBySku(productSku, { enabled: doSearch }, token);
+	useEffect(()=>{
+		setProductSku(sku);
+	}, [sku]);
 
-	useEffect(() => {
-		if (doSearch) {
-			setDoSearch(false);
-		}	
-	}, [doSearch]);
+	const handleButtonClick = () => {
+		history.push('/sku/' + productSku);
+		onChangeSku(productSku);
+	};
 
 	return (
 	  <>
 		<input value={productSku} onChange={e => setProductSku(e.target.value)} />
-		<button onClick={() => setDoSearch(true)} >Search</button>
-		{isLoading && <p>Loading...</p>}
-		{isError && <p>Error...</p>}
-		{!isLoading && !isError && data && (
-			<div>
-				<h1>{data[0]?.title}</h1>
-				<h5>${data[0]?.price}</h5>
-				<p>{data[0]?.descriptionHtml}</p>
-				<img src={data[0]?.images[0]?.src} />
-			</div>
-		)}
+		<button onClick={() => handleButtonClick()}>Search</button>
 	  </>
 	);
   }
