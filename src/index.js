@@ -10,6 +10,7 @@ const queryClient = new QueryClient({
 		},
 	},
 });
+
 render(
 	<BrowserRouter>
 		<Route path={["/sku/:sku", "/"]}>
