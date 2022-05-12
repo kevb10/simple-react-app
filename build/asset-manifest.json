@@ -1,11 +1,11 @@
 {
   "files": {
+    "main.css": "/static/css/react.css",
     "main.js": "/static/js/react.js",
-    "main.css": "/static/css/main.03bc3bf1.css",
     "index.html": "/index.html"
   },
   "entrypoints": [
-    "static/js/react.js",
-    "static/css/main.03bc3bf1.css"
+    "static/css/react.css",
+    "static/js/react.js"
   ]
 }
