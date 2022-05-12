@@ -6,6 +6,7 @@ import Button from "./Button";
 
 export default function App() {
 	const dontUrl = "https://i.imgflip.com/1b40yd.jpg";
+	
 	const params = useParams();
 	const history = useHistory();
 
